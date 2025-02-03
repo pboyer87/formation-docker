@@ -1,0 +1,129 @@
+---
+DOCKER IMAGEs
+
+>docker pull docker/welcome-to-docker
+(commande pour recup une image en ligne)
+
+>docker images --help
+
+
+>docker images 
+(affiche la liste des images)
+
+
+> docker search <image>
+(pour chercher en ligne)
+
+
+
+> docker rmi <nom image>
+(pour supprimer une image
+
+
+>docker image inspect hello-world
+recupere des infos sur une image
+
+
+>docker history hello-world
+affiche les instructions passées au moment du build
+
+
+---
+CONTAINER
+
+> docker container run <nomimage:version>  [COMMANDS] [ARGS]
+
+> docker run -d -p 80:80 nginx
+
+> docker container remame <Container> <New Container>
+(renomme un container
+
+>docker ps
+(liste les containers qui tournent 
+
+>docker ps -a 
+(liste les tous containers 
+
+
+> docker container start|stop <nom_container> <nom_container2>
+ (pour demarrer un container)
+-t pour un timeout
+
+
+
+> docker container rm <nom container>
+(pour supprimer un container
+
+
+> docker container create 
+(pour créer un container sans le demarrer)
+
+
+> docker create --name NG1 Nginx
+> docker create --name NG2 Nginx
+> docker create --name NG3 Nginx
+
+> docker container prune
+(supprimer tous les container stoppé)
+
+
+> docker create --name NG1 Nginx $(docker create --name NG2 Nginx) $(docker create --name NG3 Nginx)
+cummuler les commande
+
+docker container rm NG1 $(docker container rm NG2) $(docker container rm NG3)
+
+
+
+> docker run -it --name ubuntu_demo Ubuntu
+(va demarrer mais s'arreter une fois sorti du bash)
+
+
+> docker container start ubuntu_demo 
+
+docker attach ubuntu_demo
+
+
+
+docker logs ubuntu_demo
+
+
+
+
+----
+VOLUMES
+
+docker volume create <sdfs>
+docker colume ls
+docker volume rm
+
+
+docker run -v permet d'attacher un volume
+ex :
+docker run -it --name ubuntu_demo -v NEWVOLUME:/data ubuntu
+
+
+
+---
+
+NETWORK
+docker network ls
+
+docker network inspect <nomreseau>
+
+
+docker network connect <nom network> <nom containeur)>
+
+exemple : 
+docker network create --driver bridge InfraLinuxDemo
+
+docker run -dit --name Ubudemo1 --network InfraLinuxDemo ubuntu
+docker run -dit --name Ubudemo2 --network InfraLinuxDemo Ubuntu
+
+docker network inspect InfraLinuxDemo
+
+
+docker exec -it Ubudemo1 sh -c "apt update && apt ugrade -y && apt-install net-tools && apt-install iputils-ping"
+
+
+
+
