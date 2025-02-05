@@ -127,3 +127,10 @@ docker exec -it Ubudemo1 sh -c "apt update && apt ugrade -y && apt-install net-t
 
 
 
+docker build --tag nodejs-testpbr .                             
+docker build -t user/nodejs-testpbr:tag .      
+
+### DOCKER PUSH vers docker HUB
+PS C:\Pierrick> docker tag nodejs-exercice3 pboyer87/nodejs-exercice3
+PS C:\Pierrick> docker push pboyer87/nodejs-exercice3
+                                             
